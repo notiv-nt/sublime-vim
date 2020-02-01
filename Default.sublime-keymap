@@ -1,18 +1,7 @@
 [
-	// Enter vim mode
-	{
-		// "keys": ["e", "u"], // dvorak
-		"keys": ["d", "f"], // qwerty
-		"command": "exit_insert_mode",
-		"context": [
-			{ "key": "setting.command_mode", "operand": false },
-			{ "key": "setting.is_widget", "operand": false }
-		]
-	},
-
 	{
 		// "keys": ["option+r"], // dvorak
-		"keys": ["option+o"], // qwerty
+		"keys": ["option+f"], // qwerty
 		"command": "exit_insert_mode",
 		"context": [
 			{ "key": "setting.command_mode", "operand": false },
@@ -910,5 +899,53 @@
 		"context": [
 			{ "key": "setting.command_mode" }
 		]
-	}
+	},
+
+	{
+		"keys": ["super+k"],
+		"command": "multicommand",
+		"args": {
+			"commands": [
+				{
+					"command": "set_motion",
+					"args": {
+						"motion": "move_caret_to_screen_top",
+						"motion_args": {"repeat": 1},
+						"linewise": true
+					},
+					"context": [{"key": "setting.command_mode"}]
+				},
+				{
+					"command": "center_on_cursor",
+					"context": [{ "key": "setting.command_mode" }]
+				}
+			]
+		}
+	},
+
+	{
+		"keys": ["super+j"],
+		"command": "multicommand",
+		"args": {
+			"commands": [
+				{
+					"command": "set_motion",
+					"args": {
+						"motion": "move_caret_to_screen_bottom",
+						"motion_args": {"repeat": 1},
+						"linewise": true
+					},
+					"context": [{"key": "setting.command_mode"}]
+				},
+				{
+					"command": "center_on_cursor",
+					"context": [{ "key": "setting.command_mode" }]
+				}
+			]
+		}
+	},
+
+	{ "keys": [","], "command": "next_bookmark", "context": [ { "key": "setting.command_mode" } ] },
+	{ "keys": ["<"], "command": "prev_bookmark", "context": [ { "key": "setting.command_mode" } ] },
+	{ "keys": ["."], "command": "toggle_bookmark", "context": [ { "key": "setting.command_mode" } ] }
 ]
