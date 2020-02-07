@@ -947,5 +947,8 @@
 
 	{ "keys": [","], "command": "next_bookmark", "context": [ { "key": "setting.command_mode" } ] },
 	{ "keys": ["<"], "command": "prev_bookmark", "context": [ { "key": "setting.command_mode" } ] },
-	{ "keys": ["."], "command": "toggle_bookmark", "context": [ { "key": "setting.command_mode" } ] }
+	{ "keys": ["."], "command": "toggle_bookmark", "context": [ { "key": "setting.command_mode" } ] },
+
+	{ "keys": ["8"], "command": "find_under_prev", "context": [ { "key": "setting.command_mode" } ] },
+	{ "keys": ["9"], "command": "find_under", "context": [ { "key": "setting.command_mode" } ] }
 ]
