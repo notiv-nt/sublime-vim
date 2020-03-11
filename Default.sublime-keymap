@@ -1,771 +1,530 @@
 [
 	{
-		// "keys": ["option+r"], // dvorak
-		"keys": ["option+f"], // qwerty
+		// Вход в vim
+		"keys": ["option+u"], // dvorak
+		// "keys": ["option+f"], // qwerty
 		"command": "exit_insert_mode",
-		"context": [
-			{ "key": "setting.command_mode", "operand": false },
-			{ "key": "setting.is_widget", "operand": false }
-		]
+		"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
 	},
 
 	{
-		// "keys": ["h"], // dvorak
-		"keys": ["j"], // qwerty
+		// Переместить курсор вниз
+		"keys": ["h"], // dvorak
+		// "keys": ["j"], // qwerty
+		"command": "set_motion",
+		"args": { "motion": "move", "motion_args": { "by": "lines", "forward": true, "extend": true }, "linewise": true },
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Переместить курсор вверх
+		"keys": ["t"], // dvorak
+		// "keys": ["k"], // qwerty
+		"command": "set_motion",
+		"args": { "motion": "move", "motion_args": { "by": "lines", "forward": false, "extend": true }, "linewise": true },
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Переместить курсор вправо
+		"keys": ["n"], // dvorak
+		// "keys": ["l"], // qwerty
+		"command": "set_motion",
+		"args": { "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": true, "extend": true, "visual": false } },
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Переместить курсор влево
+		"keys": ["d"], // dvorak
+		// "keys": ["h"], // qwerty
+		"command": "set_motion",
+		"args": { "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": false, "extend": true } },
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Переместить курсор вверх до пустой строки
+		"keys": ["T"], // dvorak
+		// "keys": ["K"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": { "by": "lines", "forward": true, "extend": true },
-			"linewise": true
+			"motion_args": { "by": "stops", "word_begin": false, "empty_line": true, "separators": "", "forward": false, "extend": true }
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["t"], // dvorak
-		"keys": ["k"], // qwerty
+		// Переместить курсор вниз до пустой строки
+		"keys": ["H"], // dvorak
+		// "keys": ["J"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": { "by": "lines", "forward": false, "extend": true },
-			"linewise": true
+			"motion_args": { "by": "stops", "word_begin": false, "empty_line": true, "separators": "", "forward": true, "extend": true }
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["n"], // dvorak
-		"keys": ["l"], // qwerty
-		"command": "set_motion",
-		"args": {
-			"motion": "vi_move_by_characters_in_line",
-			"motion_args": { "forward": true, "extend": true, "visual": false }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["d"], // dvorak
-		"keys": ["h"], // qwerty
-		"command": "set_motion",
-		"args": {
-			"motion": "vi_move_by_characters_in_line",
-			"motion_args": { "forward": false, "extend": true }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
+		// Insert mode after
 		"keys": ["a"],
 		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "move",
-			"insert_args": { "by": "characters", "forward": true }
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty" }
-		]
+		"args": { "insert_command": "move", "insert_args": { "by": "characters", "forward": true } },
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty" } ]
 	},
 
 	{
+		// Курсор на центр экрана (скролл)
 		"keys": ["`"],
 		"command": "center_on_cursor",
 		"context": [{ "key": "setting.command_mode" }]
 	},
 
 	{
+		// Курсор на центр экрана (скролл)
 		"keys": ["~"],
 		"command": "center_on_cursor",
 		"context": [{ "key": "setting.command_mode" }]
 	},
 
 	{
-		// "keys": ["c"], // dvorak
-		"keys": ["i"], // qwerty
+		// Insert before
+		"keys": ["c"], // dvorak
+		// "keys": ["i"], // qwerty
 		"command": "enter_insert_mode",
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty" }
-		]
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty" } ]
 	},
 
 	{
-		// "keys": ["z"], // dvorak
-		"keys": ["/"], // qwerty
+		// Insert в начало строки
+		"keys": ["z"], // dvorak
+		// "keys": ["/"], // qwerty
 		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "vi_move_to_first_non_white_space_character"
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "insert_command": "vi_move_to_first_non_white_space_character" },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["Z"], // dvorak
-		"keys": ["?"], // qwerty
+		// Insert в конец строки
+		"keys": ["s"], // dvorak
+		// "keys": [";"], // qwerty
 		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "shrink_selections_to_beginning"
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": false }
-		]
+		"args": { "insert_command": "move_to", "insert_args": { "to": "hardeol" } },
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	// {
+	// 	// Закрыть селект, с перемещением курсора в начало
+	// 	"keys": ["z"], // dvorak
+	// 	// "keys": ["?"], // qwerty
+	// 	"command": "enter_insert_mode",
+	// 	"args": { "insert_command": "shrink_selections_to_beginning" },
+	// 	"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
+	// },
+
+	// {
+	// 	// Закрыть селект, с перемещением курсора в конец
+	// 	"keys": ["A"],
+	// 	"command": "enter_insert_mode",
+	// 	"args": { "insert_command": "shrink_selections_to_end" },
+	// 	"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
+	// },
+
+	{
+		// Вставить пустую строку после курсора
+		"keys": ["r"], // dvorak
+		// "keys": ["o"], // qwerty
+		"command": "enter_insert_mode",
+		"args": { "insert_command": "run_macro_file", "insert_args": { "file": "res://Packages/Default/Add Line.sublime-macro" } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		"keys": ["A"],
+		// Вставить пустую строку до курсора
+		"keys": ["R"], // dvorak
+		// "keys": ["O"], // qwerty
 		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "shrink_selections_to_end"
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": false }
-		]
+		"args": { "insert_command": "run_macro_file", "insert_args": { "file": "res://Packages/Default/Add Line Before.sublime-macro" } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["s"], // dvorak
-		"keys": [";"], // qwerty
-		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "move_to",
-			"insert_args": { "to": "hardeol" }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["r"], // dvorak
-		"keys": ["o"], // qwerty
-		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "run_macro_file",
-			"insert_args": { "file": "res://Packages/Default/Add Line.sublime-macro" }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["r"], // dvorak
-		"keys": ["o"], // qwerty
+		// Reverse selection direction
+		"keys": ["r"], // dvorak
+		// "keys": ["o"], // qwerty
 		"command": "vi_reverse_selections_direction",
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": false }
-		]
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
 	},
 
 	{
-		// "keys": ["R"], // dvorak
-		"keys": ["O"], // qwerty
-		"command": "enter_insert_mode",
-		"args": {
-			"insert_command": "run_macro_file",
-			"insert_args": { "file": "res://Packages/Default/Add Line Before.sublime-macro" }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["g"], // dvorak
-		"keys": ["u"], // qwerty
+		// В начало файла
+		"keys": ["g"], // dvorak
+		// "keys": ["u"], // qwerty
 		"command": "undo",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
+		// В начало строки
 		"keys": ["0"],
 		"command": "set_motion",
-		"args": {
-			"motion": "move_to",
-			"motion_args": { "to": "hardbol", "extend": true }
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "vi_has_repeat_digit", "operand": false }
-		]
+		"args": { "motion": "move_to", "motion_args": { "to": "hardbol", "extend": true } },
+		"context": [ { "key": "setting.command_mode" }, { "key": "vi_has_repeat_digit", "operand": false } ]
 	},
 
 	{
+		// lowercase
 		"keys": ["1"],
 		"command": "visual_lower_case",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
+		// uppercase
 		"keys": ["2"],
 		"command": "visual_upper_case",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
+		// swap keys
 		"keys": ["3"],
 		"command": "set_action_motion",
-		"args": {
-			"action": "swap_case",
-			"motion": "vi_move_by_characters_in_line",
-			"motion_args": { "forward": true, "extend": true, "visual": false }
-		},
-		"context": [
-			{ "key": "selection_empty", "operator": "equal", "operand": true },
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "swap_case", "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": true, "extend": true, "visual": false } },
+		"context": [ { "key": "selection_empty", "operator": "equal", "operand": true }, { "key": "setting.command_mode" } ]
 	},
 
 	{
+		// swap keys
 		"keys": ["3"],
 		"command": "swap_case",
-		"context": [
-			{ "key": "selection_empty", "operator": "equal", "operand": false },
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "selection_empty", "operator": "equal", "operand": false }, { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["k"], // dvorak
-		"keys": ["v"], // qwerty
+		// Enter visual mode
+		"keys": ["k"], // dvorak
+		// "keys": ["v"], // qwerty
 		"command": "enter_visual_mode",
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": false }
-		]
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": false } ]
 	},
 
 	{
-		// "keys": ["k"], // dvorak
-		"keys": ["v"], // qwerty
+		// ?
+		"keys": ["k"], // dvorak
+		// "keys": ["v"], // qwerty
 		"command": "set_motion_mode",
-		"args": {
-			"mode": "normal"
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "vi_has_action" },
-			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": false }
-		]
+		"args": { "mode": "normal" },
+		"context": [ { "key": "setting.command_mode" }, { "key": "vi_has_action" }, { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": false } ]
 	},
 
 	{
-		// "keys": ["k"], // dvorak
-		"keys": ["v"], // qwerty
+		// Exit visual mode
+		"keys": ["k"], // dvorak
+		// "keys": ["v"], // qwerty
 		"command": "exit_visual_mode",
-		"args": {
-			"toggle": false
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": false, "match_all": false }
-		]
+		"args": { "toggle": false },
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": false } ]
 	},
 
 	{
-		// "keys": ["K"], // dvorak
-		"keys": ["V"], // qwerty
+		// Enter visual line mode
+		"keys": ["K"], // dvorak
+		// "keys": ["V"], // qwerty
 		"command": "enter_visual_line_mode",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["K"], // dvorak
-		"keys": ["V"], // qwerty
+		// Enter visual line mode
+		"keys": ["K"], // dvorak
+		// "keys": ["V"], // qwerty
 		"command": "enter_visual_line_mode",
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "vi_motion_mode", "operand": "line" }
-		]
+		"context": [ { "key": "setting.command_mode" }, { "key": "vi_motion_mode", "operand": "line" } ]
 	},
 
 	{
-		// "keys": ["K"], // dvorak
-		"keys": ["V"], // qwerty
+		// Enter visual line mode
+		"keys": ["K"], // dvorak
+		// "keys": ["V"], // qwerty
 		"command": "set_motion_mode",
-		"args": {
-			"mode": "line"
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "vi_has_action" }
-		]
+		"args": { "mode": "line" },
+		"context": [ { "key": "setting.command_mode" }, { "key": "vi_has_action" } ]
 	},
 
 	{
-		// "keys": ["L"], // dvorak
-		"keys": ["P"], // qwerty
+		// Paste left
+		"keys": ["L"], // dvorak
+		// "keys": ["P"], // qwerty
 		"command": "vi_paste_left",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["l"], // dvorak
-		"keys": ["p"], // qwerty
+		// Paste right
+		"keys": ["l"], // dvorak
+		// "keys": ["p"], // qwerty
 		"command": "vi_paste_right",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["/"], // dvorak
-		"keys": ["z"], // qwerty
+		// Panel
+		"keys": [";"], // dvorak
+		// "keys": ["z"], // qwerty
 		"command": "show_panel",
-		"args": {
-			"panel": "incremental_find",
-			"select_text": false,
-			"reverse": false
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "panel": "incremental_find", "select_text": false, "reverse": false },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["?"], // dvorak
-		"keys": ["Z"], // qwerty
+		// Panel
+		"keys": [":"], // dvorak
+		// "keys": ["Z"], // qwerty
 		"command": "show_panel",
-		"args": {
-			"panel": "incremental_find",
-			"select_text": false,
-			"reverse": true
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "panel": "incremental_find", "select_text": false, "reverse": true },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["D"], // dvorak
-		"keys": ["H"], // qwerty
+		// Join lines
+		"keys": ["D"], // dvorak
+		// "keys": ["H"], // qwerty
 		"command": "join_lines",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["p", "<character>"], // dvorak
-		"keys": ["r", "<character>"], // qwerty
+		// Peplace
+		"keys": ["p", "<character>"], // dvorak
+		// "keys": ["r", "<character>"], // qwerty
 		"command": "replace_character",
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["q"], // dvorak
-		"keys": ["x"], // qwerty
+		// Удалить символ под курсоом
+		"keys": ["q"], // dvorak
+		// "keys": ["x"], // qwerty
 		"command": "set_action_motion",
-		"args": {
-			"action": "vi_right_delete",
-			"motion": null
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "vi_right_delete", "motion": null },
+		"context": [{ "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["Q"], // dvorak
-		"keys": ["X"], // qwerty
+		// Удалить символ перед курсоом
+		"keys": ["Q"], // dvorak
+		// "keys": ["X"], // qwerty
 		"command": "set_action_motion",
-		"args": {
-			"action": "vi_left_delete",
-			"motion": null
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "vi_left_delete", "motion": null },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["e"], // dvorak
-		"keys": ["d"], // qwerty
+		// Удалить строку под курсором
+		"keys": ["e"], // dvorak
+		// "keys": ["d"], // qwerty
 		"command": "set_action_motion",
-		"args": {
-			"action": "vi_delete",
-			"motion": "expand_selection",
-			"motion_args": { "to": "line" },
-			"motion_inclusive": true
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "vi_delete", "motion": "expand_selection", "motion_args": { "to": "line" }, "motion_inclusive": true },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["f"], // dvorak
-		"keys": ["y"], // qwerty
+		// Copy selection
+		"keys": ["f"], // dvorak
+		// "keys": ["y"], // qwerty
 		"command": "set_action",
-		"args": {
-			"action": "vi_copy"
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": false }
-		]
+		"args": { "action": "vi_copy" },
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
 	},
 
 	{
-		// "keys": ["f"], // dvorak
-		"keys": ["y"], // qwerty
+		// Copy line
+		"keys": ["f"], // dvorak
+		// "keys": ["y"], // qwerty
 		"command": "set_action_motion",
-		"args": {
-			"action": "vi_copy",
-			"motion": "expand_selection",
-			"motion_args": { "to": "line" }
-		},
-		"context": [
-			{ "key": "setting.command_mode" },
-			{ "key": "selection_empty", "operator": "equal", "operand": true }
-		]
+		"args": { "action": "vi_copy", "motion": "expand_selection", "motion_args": { "to": "line" } },
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": true } ]
 	},
 
 	{
-		// "keys": ["j"], // dvorak
-		"keys": ["c"], // qwerty
+		// Cut selection
+		"keys": ["j"], // dvorak
+		// "keys": ["c"], // qwerty
 		"command": "set_action_motion",
-		"args": {
-			"action": "enter_insert_mode",
-			"action_args": { "insert_command": "vi_delete" },
-			"motion": "vi_span_count_lines",
-			"motion_args": { "repeat": 1 }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "enter_insert_mode", "action_args": { "insert_command": "vi_delete" }, "motion": "vi_span_count_lines", "motion_args": { "repeat": 1 } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["="], // dvorak
-		"keys": ["]"], // qwerty
+		// Reindent
+		"keys": ["="], // dvorak
+		// "keys": ["]"], // qwerty
 		"command": "set_action",
-		"args": {
-			"action": "reindent",
-			"description": "Reindent",
-			"action_args": { "force_indent": false }
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "action": "reindent", "description": "Reindent", "action_args": { "force_indent": false } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["T"], // dvorak
-		"keys": ["K"], // qwerty
+		// Переместить курсор вперёд по stops
+		"keys": [","], // dvorak
+		// "keys": ["w"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": false,
-				"empty_line": true,
-				"separators": "",
-				"forward": false,
-				"extend": true
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["H"], // dvorak
-		"keys": ["J"], // qwerty
-		"command": "set_motion",
-		"args": {
-			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": false,
-				"empty_line": true,
-				"separators": "",
-				"forward": true,
-				"extend": true
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
-	},
-
-	{
-		// "keys": ["<"], // dvorak
-		"keys": ["W"], // qwerty
-		"command": "set_motion",
-		"args": {
-			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"empty_line": true,
-				"separators": "",
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "punct_begin": true, "empty_line": true, "forward": true, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": [","], // dvorak
-		"keys": ["w"], // qwerty
+		// Переместить курсор вперёд после ближайшего пробела
+		"keys": ["<"], // dvorak
+		// "keys": ["W"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"punct_begin": true,
-				"empty_line": true,
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "empty_line": true, "separators": "", "forward": true, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["x"], // dvorak
-		"keys": ["b"], // qwerty
+		// Переместить курсор назад по stops
+		"keys": ["x"], // dvorak
+		// "keys": ["b"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"punct_begin": true,
-				"empty_line": true,
-				"forward": false,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "punct_begin": true, "empty_line": true, "forward": false, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["X"], // dvorak
-		"keys": ["B"], // qwerty
+		// Переместить курсор назад после ближайшего пробела
+		"keys": ["X"], // dvorak
+		// "keys": ["B"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"empty_line": true,
-				"separators": "",
-				"forward": false,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "empty_line": true, "separators": "", "forward": false, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["."], // dvorak
-		"keys": ["e"], // qwerty
+		// Переместить курсор вперёд к концу слова
+		"keys": ["."], // dvorak
+		// "keys": ["e"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_end": true,
-				"punct_end": true,
-				"empty_line": true,
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_end": true, "punct_end": true, "empty_line": true, "forward": true, "extend": true },
 			"inclusive": true,
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": [">"], // dvorak
-		"keys": ["E"], // qwerty
+		// Переместить курсор вперёд до пробела
+		"keys": [">"], // dvorak
+		// "keys": ["E"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_end": true,
-				"empty_line": true,
-				"separators": "",
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_end": true, "empty_line": true, "separators": "", "forward": true, "extend": true },
 			"inclusive": true,
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["option+,"], // dvorak
-		"keys": ["option+w"], // qwerty
+		// Переместить курсор вперёд до частям слов
+		"keys": ["option+,"], // dvorak
+		// "keys": ["option+w"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"sub_word_begin": true,
-				"punct_begin": true,
-				"empty_line": true,
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "sub_word_begin": true, "punct_begin": true, "empty_line": true, "forward": true, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["option+."], // dvorak
-		"keys": ["´"], // qwerty
+		// Переместить курсор вперёд после частям слов
+		"keys": ["option+."], // dvorak
+		// "keys": ["´"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_end": true,
-				"sub_word_end": true,
-				"punct_end": true,
-				"empty_line": true,
-				"forward": true,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_end": true, "sub_word_end": true, "punct_end": true, "empty_line": true, "forward": true, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["option+x"], // dvorak
-		"keys": ["option+b"], // qwerty
+		// Переместить курсор назад в начало части слова
+		"keys": ["option+x"], // dvorak
+		// "keys": ["option+b"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "move",
-			"motion_args": {
-				"by": "stops",
-				"word_begin": true,
-				"sub_word_begin": true,
-				"punct_begin": true,
-				"empty_line": true,
-				"forward": false,
-				"extend": true
-			},
+			"motion_args": { "by": "stops", "word_begin": true, "sub_word_begin": true, "punct_begin": true, "empty_line": true, "forward": false, "extend": true },
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["b"], // dvorak
-		"keys": ["n"], // qwerty
+		// Переместить курсор к концу строки
+		"keys": ["b"], // dvorak
+		// "keys": ["n"], // qwerty
 		"command": "set_motion",
-		"args": {
-			"motion": "vi_move_to_hard_eol",
-			"motion_args": { "repeat": 1, "extend": true },
-			"inclusive": true,
-			"clip_to_line": true
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "motion": "vi_move_to_hard_eol", "motion_args": { "repeat": 1, "extend": true }, "inclusive": true, "clip_to_line": true },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["i"], // dvorak
-		"keys": ["g"], // qwerty
+		// Курсор в начало файла
+		"keys": ["i"], // dvorak
+		// "keys": ["g"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "vi_goto_line",
-			"motion_args": {
-				"repeat": 1,
-				"explicit_repeat": true,
-				"extend": true,
-				"ending": "bof"
-			},
+			"motion_args": { "repeat": 1, "explicit_repeat": true, "extend": true, "ending": "bof"},
 			"linewise": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["I"], // dvorak
-		"keys": ["G"], // qwerty
+		// Курсор в конец файла
+		"keys": ["I"], // dvorak
+		// "keys": ["G"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "vi_goto_line",
-			"motion_args": {
-				"repeat": 1,
-				"explicit_repeat": true,
-				"extend": true,
-				"ending": "eof"
-			},
+			"motion_args": { "repeat": 1, "explicit_repeat": true, "extend": true, "ending": "eof" },
 			"linewise": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["u", "<character>"], // dvorak
-		"keys": ["f", "<character>"], // qwerty
+		// Переместить курсор вперёд к ближайшей <character>
+		"keys": ["u", "<character>"], // dvorak
+		// "keys": ["f", "<character>"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "vi_move_to_character",
@@ -773,14 +532,13 @@
 			"inclusive": true,
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["U", "<character>"], // dvorak
-		"keys": ["F", "<character>"], // qwerty
+		// Переместить курсор назад к ближайшей <character>
+		"keys": ["U", "<character>"], // dvorak
+		// "keys": ["F", "<character>"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "vi_move_to_character",
@@ -788,28 +546,26 @@
 			"inclusive": true,
 			"clip_to_line": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["m"], // dvorak
-		"keys": ["m"], // qwerty
+		// Переместить курсор к ближайшим скобкам
+		"keys": ["m"], // dvorak
+		// "keys": ["m"], // qwerty
 		"command": "set_motion",
 		"args": {
 			"motion": "vi_move_to_brackets",
 			"motion_args": { "repeat": 1 },
 			"inclusive": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["J"], // dvorak
-		"keys": ["C"], // qwerty
+		// Удалить от курсора до конца строки с insert mode
+		"keys": ["J"], // dvorak
+		// "keys": ["C"], // qwerty
 		"command": "set_action_motion",
 		"args": {
 			"action": "enter_insert_mode",
@@ -818,14 +574,13 @@
 			"motion_args": { "repeat": 1, "extend": true },
 			"motion_inclusive": true
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
-		// "keys": ["o"], // dvorak
-		"keys": ["s"], // qwerty
+		// Insert mode с удалением символа под курсором
+		"keys": ["o"], // dvorak
+		// "keys": ["s"], // qwerty
 		"command": "set_action_motion",
 		"args": {
 			"action": "enter_insert_mode",
@@ -833,86 +588,46 @@
 			"motion": "vi_move_by_characters_in_line",
 			"motion_args": { "forward": true, "extend": true, "visual": false }
 		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
 		"keys": ["left"],
 		"command": "set_motion",
-		"args": {
-			"motion": "vi_move_by_characters_in_line",
-			"motion_args": {
-				"forward": false,
-				"extend": true
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": false, "extend": true } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
 		"keys": ["right"],
 		"command": "set_motion",
-		"args": {
-			"motion": "vi_move_by_characters_in_line",
-			"motion_args": {
-				"forward": true,
-				"extend": true,
-				"visual": false
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": true, "extend": true, "visual": false } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
 		"keys": ["up"],
 		"command": "set_motion",
-		"args": {
-			"motion": "move",
-			"motion_args": {
-				"by": "lines",
-				"forward": false,
-				"extend": true
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "motion": "move", "motion_args": { "by": "lines", "forward": false, "extend": true } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
 		"keys": ["down"],
 		"command": "set_motion",
-		"args": {
-			"motion": "move",
-			"motion_args": {
-				"by": "lines",
-				"forward": true,
-				"extend": true
-			}
-		},
-		"context": [
-			{ "key": "setting.command_mode" }
-		]
+		"args": { "motion": "move", "motion_args": { "by": "lines", "forward": true, "extend": true } },
+		"context": [ { "key": "setting.command_mode" } ]
 	},
 
 	{
+		// Скролл вверх на пол экрана
 		"keys": ["super+k"],
 		"command": "multicommand",
 		"args": {
 			"commands": [
 				{
 					"command": "set_motion",
-					"args": {
-						"motion": "move_caret_to_screen_top",
-						"motion_args": {"repeat": 1},
-						"linewise": true
-					},
+					"args": { "motion": "move_caret_to_screen_top", "motion_args": {"repeat": 1}, "linewise": true },
 					"context": [{"key": "setting.command_mode"}]
 				},
 				{
@@ -924,17 +639,14 @@
 	},
 
 	{
+		// Скролл вниз на пол экрана
 		"keys": ["super+j"],
 		"command": "multicommand",
 		"args": {
 			"commands": [
 				{
 					"command": "set_motion",
-					"args": {
-						"motion": "move_caret_to_screen_bottom",
-						"motion_args": {"repeat": 1},
-						"linewise": true
-					},
+					"args": { "motion": "move_caret_to_screen_bottom", "motion_args": {"repeat": 1}, "linewise": true },
 					"context": [{"key": "setting.command_mode"}]
 				},
 				{
@@ -945,10 +657,36 @@
 		}
 	},
 
-	{ "keys": [","], "command": "next_bookmark", "context": [ { "key": "setting.command_mode" } ] },
-	{ "keys": ["<"], "command": "prev_bookmark", "context": [ { "key": "setting.command_mode" } ] },
-	{ "keys": ["."], "command": "toggle_bookmark", "context": [ { "key": "setting.command_mode" } ] },
+	{
+		// Next bookmark
+		"keys": ["w"], // dvorak
+		// "keys": [","], // qwerty
+		"command": "next_bookmark",
+		"context": [ { "key": "setting.command_mode" } ]
+	},
 
+	{
+		// Prev bookmark
+		"keys": ["W"], // dvorak
+		// "keys": ["<"],// qwerty
+		"command": "prev_bookmark",
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Toggle bookmark
+		"keys": ["v"], // dvorak
+		// "keys": ["."],// qwerty
+		"command": "toggle_bookmark",
+		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	// Предыдущее вхождение слова
 	{ "keys": ["8"], "command": "find_under_prev", "context": [ { "key": "setting.command_mode" } ] },
-	{ "keys": ["9"], "command": "find_under", "context": [ { "key": "setting.command_mode" } ] }
+	// Следующее вхождение слова
+	{ "keys": ["9"], "command": "find_under", "context": [ { "key": "setting.command_mode" } ] },
+
+	// Продублировать курсор вверх/вниз
+	{ "keys": ["super+alt+k"], "command": "select_lines", "args": { "forward": false } },
+	{ "keys": ["super+alt+j"], "command": "select_lines", "args": { "forward": true } },
 ]
