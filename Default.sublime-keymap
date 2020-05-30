@@ -8,6 +8,22 @@
 	},
 
 	{
+		// Вход в vim
+		"keys": ["option+o"], // dvorak
+		// "keys": ["option+s"], // qwerty
+		"command": "exit_insert_mode",
+		"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
+	},
+
+	{
+		// Вход в vim
+		"keys": ["®"], // dvorak
+		// "keys": ["option+s"], // qwerty
+		"command": "exit_insert_mode",
+		"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
+	},
+
+	{
 		// Переместить курсор вниз
 		"keys": ["h"], // dvorak
 		// "keys": ["j"], // qwerty
@@ -68,14 +84,6 @@
 	},
 
 	{
-		// Insert mode after
-		"keys": ["a"],
-		"command": "enter_insert_mode",
-		"args": { "insert_command": "move", "insert_args": { "by": "characters", "forward": true } },
-		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty" } ]
-	},
-
-	{
 		// Курсор на центр экрана (скролл)
 		"keys": ["`"],
 		"command": "center_on_cursor",
@@ -87,6 +95,14 @@
 		"keys": ["~"],
 		"command": "center_on_cursor",
 		"context": [{ "key": "setting.command_mode" }]
+	},
+
+	{
+		// Insert mode after
+		"keys": ["a"],
+		"command": "enter_insert_mode",
+		"args": { "insert_command": "move", "insert_args": { "by": "characters", "forward": true } },
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty" } ]
 	},
 
 	{
@@ -107,12 +123,29 @@
 	},
 
 	{
+		// Insert в начало строки
+		"keys": ["option+z"], // dvorak
+		// "keys": ["option+/"], // qwerty
+		"command": "enter_insert_mode",
+		"args": { "insert_command": "vi_move_to_first_non_white_space_character" },
+	},
+
+	{
 		// Insert в конец строки
 		"keys": ["s"], // dvorak
 		// "keys": [";"], // qwerty
 		"command": "enter_insert_mode",
 		"args": { "insert_command": "move_to", "insert_args": { "to": "hardeol" } },
 		"context": [ { "key": "setting.command_mode" } ]
+	},
+
+	{
+		// Insert в конец строки
+		"keys": ["option+s"], // dvorak
+		// "keys": ["option+;"], // qwerty
+		"command": "enter_insert_mode",
+		"args": { "insert_command": "move_to", "insert_args": { "to": "hardeol" } },
+		// "context": [ { "key": "setting.command_mode" } ]
 	},
 
 	// {
@@ -158,13 +191,13 @@
 		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
 	},
 
-	{
-		// В начало файла
-		"keys": ["g"], // dvorak
-		// "keys": ["u"], // qwerty
-		"command": "undo",
-		"context": [ { "key": "setting.command_mode" } ]
-	},
+	// {
+	// 	// Undo
+	// 	"keys": ["g"], // dvorak
+	// 	// "keys": ["u"], // qwerty
+	// 	"command": "undo",
+	// 	"context": [ { "key": "setting.command_mode" } ]
+	// },
 
 	{
 		// В начало строки
@@ -189,7 +222,7 @@
 	},
 
 	{
-		// swap keys
+		// swap case
 		"keys": ["3"],
 		"command": "set_action_motion",
 		"args": { "action": "swap_case", "motion": "vi_move_by_characters_in_line", "motion_args": { "forward": true, "extend": true, "visual": false } },
@@ -197,7 +230,7 @@
 	},
 
 	{
-		// swap keys
+		// swap case
 		"keys": ["3"],
 		"command": "swap_case",
 		"context": [ { "key": "selection_empty", "operator": "equal", "operand": false }, { "key": "setting.command_mode" } ]
