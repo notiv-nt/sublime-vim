@@ -1,11 +1,11 @@
 [
-	{
-		// Вход в vim
-		"keys": ["option+u"], // dvorak
-		// "keys": ["option+f"], // qwerty
-		"command": "exit_insert_mode",
-		"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
-	},
+	// {
+	// 	// Вход в vim
+	// 	"keys": ["option+u"], // dvorak
+	// 	// "keys": ["option+f"], // qwerty
+	// 	"command": "exit_insert_mode",
+	// 	"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
+	// },
 
 	{
 		// Вход в vim
