@@ -9,6 +9,13 @@
 
 	{
 		// Вход в vim
+		"keys": ["escape"],
+		"command": "exit_insert_mode",
+		"context": [ { "key": "setting.command_mode", "operand": false }, { "key": "setting.is_widget", "operand": false } ]
+	},
+
+	{
+		// Вход в vim
 		"keys": ["option+o"], // dvorak
 		// "keys": ["option+s"], // qwerty
 		"command": "exit_insert_mode",
@@ -382,14 +389,14 @@
 		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": true } ]
 	},
 
-	{
-		// Cut selection
-		"keys": ["j"], // dvorak
-		// "keys": ["c"], // qwerty
-		"command": "set_action_motion",
-		"args": { "action": "enter_insert_mode", "action_args": { "insert_command": "vi_delete" }, "motion": "vi_span_count_lines", "motion_args": { "repeat": 1 } },
-		"context": [ { "key": "setting.command_mode" } ]
-	},
+	// {
+	// 	// Cut selection
+	// 	"keys": ["j"], // dvorak
+	// 	// "keys": ["c"], // qwerty
+	// 	"command": "set_action_motion",
+	// 	"args": { "action": "enter_insert_mode", "action_args": { "insert_command": "vi_delete" }, "motion": "vi_span_count_lines", "motion_args": { "repeat": 1 } },
+	// 	"context": [ { "key": "setting.command_mode" } ]
+	// },
 
 	{
 		// Reindent
@@ -621,7 +628,20 @@
 			"motion": "vi_move_by_characters_in_line",
 			"motion_args": { "forward": true, "extend": true, "visual": false }
 		},
-		"context": [ { "key": "setting.command_mode" } ]
+		"context": [ { "key": "setting.command_mode" }, { "key": "selection_empty" } ]
+	},
+
+	{
+	  // Cut selection
+	  "keys": ["o"], // dvorak
+	  // "keys": ["s"], // qwerty
+	  "command": "set_action_motion",
+	  "args": {
+	    "action": "enter_insert_mode",
+	    "action_args": { "insert_command": "vi_delete" },
+	    "motion": "vi_span_count_lines", "motion_args": { "repeat": 1 }
+	  },
+	  "context": [ { "key": "setting.command_mode" }, { "key": "selection_empty", "operator": "equal", "operand": false } ]
 	},
 
 	{
