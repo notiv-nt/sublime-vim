@@ -92,7 +92,7 @@
 
 	{
 		// Курсор на центр экрана (скролл)
-		"keys": ["`"],
+		"keys": [";"],
 		"command": "center_on_cursor",
 		"context": [{ "key": "setting.command_mode" }]
 	},
@@ -312,7 +312,7 @@
 
 	{
 		// Panel
-		"keys": [";"], // dvorak
+		"keys": ["/"], // dvorak
 		// "keys": ["z"], // qwerty
 		"command": "show_panel",
 		"args": { "panel": "incremental_find", "select_text": false, "reverse": false },
@@ -321,7 +321,7 @@
 
 	{
 		// Panel
-		"keys": [":"], // dvorak
+		"keys": ["?"], // dvorak
 		// "keys": ["Z"], // qwerty
 		"command": "show_panel",
 		"args": { "panel": "incremental_find", "select_text": false, "reverse": true },
